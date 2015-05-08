@@ -14,20 +14,15 @@ var ambient = ambientlib.use(tessel.port['A']);
 
 ambient.on('ready', function () {
 	console.log('light sensor is ready!');
-	var lightData=[];
+	
+	setInterval( function () {
+	    ambient.getLightLevel( function(err, ldata) {
+	      if (err) throw err;
+	        console.log("Light level:", ldata.toFixed(8));
+	    });
+	  })}, 500);
 
-	var getLight = setInterval(function(){
-
-		ambient.getLightLevel(function(err, ldata){
-			if (err) throw err;
-			lightData.push(ldata.toFixed(4));
-		})
-
-	}, 250)
-
-	setTimeout(clearInterval(getLight), 1500)
-	console.log('our light data:')
-	console.log(lightData)
+	setTimeout(clearInterval(lightStuff), 1500);
 });
 
 ambient.on('error', function (err) {

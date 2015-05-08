@@ -63,3 +63,19 @@ ambient.on('ready', function () {
 ambient.on('error', function (err) {
   console.log(err)
 });
+
+    /* 
+  var lightData=[];
+
+  var getLight = setInterval(function(){
+
+    ambient.getLightLevel(function(err, ldata){
+      if (err) throw err;
+      lightData.push(ldata.toFixed(4));
+    })
+
+  }, 250)
+
+  setTimeout(clearInterval(getLight), 1500)
+  console.log('our light data:')
+  console.log(lightData)*/
