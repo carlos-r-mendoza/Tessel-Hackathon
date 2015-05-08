@@ -16,18 +16,20 @@ ambient.on('ready', function () {
 	console.log('light sensor is ready!');
 	var lightData=[];
 
-	var getLight = setInterval(function(){
+	function doStuff (){
+		var getLight = setInterval(function(){
 
-		ambient.getLightLevel(function(err, ldata){
-			if (err) throw err;
-			console.log(ldata.toFixed(4));
-			lightData.push(ldata.toFixed(4));
-		})
+			ambient.getLightLevel(function(err, ldata){
+				if (err) throw err;
+				console.log(ldata.toFixed(4));
+				lightData.push(ldata.toFixed(4));
+			})
 
-	}, 250);
+		}, 250);
+	}
 
-	getLight();
-
+	doStuff();
+	
 	setTimeout(clearInterval(getLight), 1500);
 	setTimeout(function(){
 		console.log('our light data:');
