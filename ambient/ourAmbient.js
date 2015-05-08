@@ -16,6 +16,7 @@ ambient.on('ready', function () {
 	console.log('light sensor is ready!');
 });
 
+
 ambient.on('error', function (err) {
   console.log(err)
 });
@@ -36,8 +37,7 @@ function getData (){
 
 	// return avg < 0.03
 }
-
-getData()
+>>>>>>> 053396a286cf9ece7f24b88a6e266149f9eed746
 
 function average(arr){
 	var avg;
