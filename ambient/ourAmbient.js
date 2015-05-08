@@ -12,7 +12,8 @@ var ambientlib = require('ambient-attx4');
 
 var ambient = ambientlib.use(tessel.port['A']);
 
-ambient.prototype.covered = function(){
+ambient.on('ready', function () {
+	console.log('light sensor is ready!');
 	var lightData=[];
 
 	var getLight = setInterval(function(){
@@ -25,15 +26,10 @@ ambient.prototype.covered = function(){
 	}, 250)
 
 	setTimeout(clearInterval(getLight), 1500)
+	console.log('our light data:')
 	console.log(lightData)
-}
-
-ambient.on('ready', function () {
-	console.log('light sensor is ready!')
 });
 
 ambient.on('error', function (err) {
   console.log(err)
 });
-
-ambient.covered()
