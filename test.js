@@ -2,19 +2,24 @@ var http = require('http');
 var server = http.createServer();
 var tessel = require('tessel');
 var servolib = require('servo-pca9685');
-// var camera = require('camera-vc0706').use(tessel.port['A']);
+//var camera = require('camera-vc0706').use(tessel.port['A']);
 var servo = servolib.use(tessel.port['D']);
 var servo1 = 1; // We have a servo plugged in at position 1
 var ambientlib = require('ambient-attx4');
 var ambient = ambientlib.use(tessel.port['C']);
 var request = require('request');
- 
-server.on('request', function (req, res) {
+
+// var notificationLED = tessel.led[3];
+
+// camera.on('ready', function() {
+//   notificationLED.high();
+  server.on('request', function (req, res) {
   // servo.move(servo1, 0);
- var count = 10;
+
+ var count = 6;
  var turn = function(){
    if (count == 0) {
-     count = 10;
+     count = 6;
      return 0;
    } else if (count % 2 == 0){
      count -= 1;
@@ -28,6 +33,7 @@ server.on('request', function (req, res) {
  };
 
  if (req.url === '/high') {
+  console.log('high');
    turn();
  }
  else if (req.url === '/med') {
@@ -39,11 +45,15 @@ server.on('request', function (req, res) {
    console.log('got low req')
    servo.move(servo1, 0.4);
      setTimeout(function() { servo.move(servo1, 0) }, 2000);
- }
-});
- 
+ } 
+  });
+
+
+
+
+
 servo.on('ready', function () {
-  servo.configure(servo1, 0.05, 0.12, function () {
+  servo.configure(servo1, 0.05, 0.50, function () {
     server.listen(1337, function () {
       console.log('Server listening!');
       // setTimeout(function() {
@@ -55,7 +65,11 @@ servo.on('ready', function () {
       // }, 3000);
     });
   });
-});
+});  
+// });
+
+ 
+
  
 servo.on('error', function(err){
   console.log(err);

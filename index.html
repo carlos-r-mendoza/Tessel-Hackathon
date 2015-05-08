@@ -1,15 +1,54 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Cereal Dispenser</title>
-	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+	body {
+	background: url(http://www.rushtimes.com/wp-content/uploads/2014/06/corn-oats-rice-wheat-cereal-rings-composed-in-stripes.jpg);
+	background-repeat: none;
+}
+
+#buttonContainer{
+	width: 100%;
+	padding-top: 360px;
+	text-align: center;
+}
+
+#buttons{
+	opacity: .9;
+}
+
+button {
+	width: 40%;
+	height: 100px;
+	border:none;
+}
+
+button a {
+	font-weight: bold;
+	font-size: 24px;
+	color: #333;
+}
+
+button:hover {
+	background-color: white;
+	opacity: 1 !important;
+}
+</style>
 <!--     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script> -->
 </head>
 <body>
-<button><a href="http://192.168.1.30:1337/high">High</a></button>
-<!-- <button><a href="http://192.168.1.30:1337/med">med</a></button>
-<button><a href="http://192.168.1.30:1337/low">low</a></button> -->
+	<div id="buttonContainer">
+		<div id="buttons">
+		<button class="btn btn-default"><a href="http://192.168.1.30:1337/high">GIVE ME ALOT</a></button><!-- 
+        <button class="btn btn-default"><a href="http://192.168.1.30:1337/alittle">give me alittle</a></button> -->
+		</div>
+	<!-- <button><a href="http://192.168.1.30:1337/med">med</a></button>
+	<button><a href="http://192.168.1.30:1337/low">low</a></button> -->
+	</div>
 </body>
 </html>
