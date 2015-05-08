@@ -11,11 +11,24 @@ var request = require('request');
  
 server.on('request', function (req, res) {
   // servo.move(servo1, 0);
- if (req.url === '/high') {
-     console.log('got high req')
+ var count = 10;
+ var turn = function(){
+   if (count == 0) {
+     count = 10;
+     return 0;
+   } else if (count % 2 == 0){
+     count -= 1;
      servo.move(servo1, 1);
+     return setTimeout(turn, 1500);
+   } else if (count % 2 == 1){
+     count -= 1;
+     servo.move(servo1, 0);
+     return setTimeout(turn, 1500)
+   }
+ };
 
-     setTimeout(function() { servo.move(servo1, 0); console.log("at setTimeout") }, 2000);
+ if (req.url === '/high') {
+   turn();
  }
  else if (req.url === '/med') {
    console.log('got med req')

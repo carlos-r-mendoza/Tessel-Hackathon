@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "ambient-attx4": "^0.2.5",
-    "servo-pca9685",
+    "camera-vc0706": "^0.1.8",
+    "express": "^4.12.3",
     "request": "^2.55.0"
   }
 }
