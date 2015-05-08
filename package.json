@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ambient-attx4": "^0.2.5",
+    "servo-pca9685",
+    "request": "^2.55.0"
+  }
 }
