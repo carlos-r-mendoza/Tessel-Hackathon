@@ -24,16 +24,16 @@ servo.on('ready', function () {
   //  Moving them towards each other = less movement range
   //  Moving them apart = more range, more likely to stall and burn out
   servo.configure(servo1, 0.05, 0.12, function () {
-  //   setInterval(function () {
-  //     console.log('Position (in range 0-1):', position);
-  //     //  Set servo #1 to position pos.
-  //     servo.move(servo1, position);
+    setInterval(function () {
+      console.log('Position (in range 0-1):', position);
+      //  Set servo #1 to position pos.
+      servo.move(servo1, position);
 
-  //     // Increment by 10% (~18 deg for a normal servo)
-  //     position += 0.1;
-  //     if (position > 1) {
-  //       position = 0; // Reset servo position
-  //     }
-  //   }, 200); // Every 500 milliseconds
-  // });
+      // Increment by 10% (~18 deg for a normal servo)
+      position += 0.1;
+      if (position > 1) {
+        position = 0; // Reset servo position
+      }
+    }, 200); // Every 500 milliseconds
+  });
 });

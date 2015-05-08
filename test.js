@@ -10,59 +10,36 @@ var ambient = ambientlib.use(tessel.port['C']);
 var request = require('request');
  
 server.on('request', function (req, res) {
-  var position = 0;
-  var remain = 0;
-  
-  if (req.url === '/high') {
-      console.log('got high req')
-    position += 1;
-    if (position >= 1){
-      remain = 2 - position;
-      position = 1;
-      servo.move(servo1, position);
-      setTimeout(servo.move(servo1, remain), 500);
-      position = remain;
-      remain = 0;
-    }
- 
-  }
-  else if (req.url === '/med') {
-    position += 0.6;
-      console.log('got medium req')
-    if (position >= 1){
-      remain = 2 - position;
-      position = 1;
-      servo.move(servo1, position);
-      setTimeout(servo.move(servo1, remain), 500);
-      position = remain;
-      remain = 0;
-    }
-    else {
-      servo.move(servo1, position);
-    }
- 
-  }
-  else if (req.url === '/low') {
-    position += 0.3;
-    console.log('got low req')
-    if (position >= 1){
-      remain = 2 - position;
-      position = 1;
-      servo.move(servo1, position);
-      setTimeout(servo.move(servo1, remain), 500);
-      position = remain;
-      remain = 0;
-    }
-    else {
-      servo.move(servo1, position);
-    }
-  }
+  // servo.move(servo1, 0);
+ if (req.url === '/high') {
+     console.log('got high req')
+     servo.move(servo1, 1);
+
+     setTimeout(function() { servo.move(servo1, 0); console.log("at setTimeout") }, 2000);
+ }
+ else if (req.url === '/med') {
+   console.log('got med req')
+   servo.move(servo1, 0.7);
+    setTimeout(function() { servo.move(servo1, 0) }, 2000);
+ }
+ else if (req.url === '/low') {
+   console.log('got low req')
+   servo.move(servo1, 0.4);
+     setTimeout(function() { servo.move(servo1, 0) }, 2000);
+ }
 });
  
 servo.on('ready', function () {
   servo.configure(servo1, 0.05, 0.12, function () {
     server.listen(1337, function () {
       console.log('Server listening!');
+      // setTimeout(function() {
+
+      //   app.post('/', function (req, res)) {
+      //     res.json('payload={"channel": "#cereal", "username": "webhookbot", "text": "This is posted to #cereal and comes from a bot named webhookbot.", "icon_emoji": ":ghost:"}');
+      //   }
+
+      // }, 3000);
     });
   });
 });
